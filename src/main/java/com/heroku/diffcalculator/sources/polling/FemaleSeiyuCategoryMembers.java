@@ -67,7 +67,6 @@ public class FemaleSeiyuCategoryMembers extends RouteBuilder {
 
     from("direct:result_" + collectionName)
             .routeId("result_" + collectionName)
-            .to("log:foo")
             .filter((Exchange exchange)
                     -> exchange.getIn().getBody(Document.class).containsKey("data"))
             .wireTap("direct:diff_" + collectionName)
