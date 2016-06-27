@@ -78,7 +78,6 @@ public class FemaleSeiyuCategoryMembers extends RouteBuilder {
               Document diff = exchange.getIn().getBody(Document.class);
               diff.remove("master");
               exchange.getIn().setBody(diff);
-              System.out.println("diff insert document..." + diff);
             })
             .toF("mongodb:diff?database=%s&collection=%s&operation=insert",
                     config.diffDatabaseName,
@@ -90,7 +89,6 @@ public class FemaleSeiyuCategoryMembers extends RouteBuilder {
               Document diff = exchange.getIn().getBody(Document.class);
               Document master = diff.get("master", Document.class);
               exchange.getIn().setBody(master);
-              System.out.println("master insert document..." + master);
             })
             .toF("mongodb:master?database=%s&collection=%s&operation=insert",
                     config.masterDatabaseName,
